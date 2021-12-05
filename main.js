@@ -181,6 +181,6 @@ app.get('/profile', function(request, response) {
     response.send(profile);
 });
 
-app.listen(prot, function() {
+app.listen(port, function() {
   console.log('Example app listening on port 3000!')
 });
