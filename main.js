@@ -3,7 +3,6 @@ var app = express()
 var fs = require('fs');
 var path = require('path');
 var qs = require('querystring');
-var main_form = require('./lib/main_form.js');
 var template = require('./lib/template.js');
 var sanitizeHtml = require('sanitize-html');
 
@@ -19,8 +18,8 @@ app.get('/', function(request, response) {
 });
 
 app.get('/intro', function(request, response) { 
-    var mainform = main_form.screen();
-    var intro = mainform  + `
+  var screen = template.screen();
+    var intro = screen  + `
     <div class="container">
       <h3>포렌식 시나리오를 작성하는 곳입니다.</h3>
       <p>
@@ -32,14 +31,13 @@ app.get('/intro', function(request, response) {
 
 app.get('/blist', function(request, response) { 
   fs.readdir('./data', function(error, filelist){
-    var mainform = main_form.screen();
-    var title = 'Welcome';
+    var screen = template.screen();
     var list = template.list(filelist);
-    var html = template.HTML(title, list,
+    var html = template.HTML('', list,
       '',
       `<a href="/create">create</a>`
     ); 
-    var blist = mainform + html;
+    var blist = screen + html;
     response.send(blist);
   });
 });
@@ -51,7 +49,6 @@ app.get('/page/:pageId', function(request, response) {
       var title = request.params.pageId;
       var sanitizedTitle = sanitizeHtml(title);
       var sanitizedDescription = sanitizeHtml(description);
-      var list = template.list(filelist);
       var html = template.HTML(sanitizedTitle,'',
         `<h3>${sanitizedTitle}</h3>${sanitizedDescription}<br>`,
         `<a href="/create">create</a>
@@ -70,7 +67,7 @@ app.get('/page/:pageId', function(request, response) {
 app.get('/create', function(request, response){
   fs.readdir('./data', function(error, filelist){
     var title = 'WEB - create';
-    var mainform = main_form.screen();
+    var screen = template.screen();
     var html = template.HTML(title, '', `
       <form action="/create_process" method="post">
         <p><input type="text" name="title" placeholder="title"></p>
@@ -82,7 +79,7 @@ app.get('/create', function(request, response){
         </p>
       </form>
     `, '');
-    var blist = mainform + html;
+    var blist = screen + html;
     response.send(blist);
   });
 });
@@ -165,8 +162,8 @@ app.post('/delete_process', function(request, response){
 });
 
 app.get('/profile', function(request, response) { 
-    var mainform = main_form.screen();
-    var profile = mainform  + 
+  var screen = template.screen();
+    var profile = screen  + 
     `<div class="container">
       <h1>ABOUT ME</h1>
         <h2 id = "abouth2"> 
