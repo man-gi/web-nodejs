@@ -34,7 +34,6 @@ app.get('/blist', function(request, response) {
   fs.readdir('./data', function(error, filelist){
     var mainform = main_form.screen();
     var title = 'Welcome';
-    var description = 'Hello, Node.js';
     var list = template.list(filelist);
     var html = template.HTML(title, list,
       '',
@@ -129,7 +128,7 @@ app.get('/update/:pageId', function(request, response){
     });
   });
 });
- 
+
 app.post('/update_process', function(request, response){
   var body = '';
   request.on('data', function(data){
@@ -148,7 +147,7 @@ app.post('/update_process', function(request, response){
       });
   });
 });
- 
+
 app.post('/delete_process', function(request, response){
   var body = '';
   request.on('data', function(data){
