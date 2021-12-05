@@ -185,6 +185,30 @@ app.get('/profile', function(request, response) {
     response.send(profile);
 });
 
+
+app.get('/lonin', function(request, response) { 
+  var screen = template.screen();
+  var footer = template.footer();
+    var profile = screen  +
+    ` <div class="container">
+      <h3>로그인</h3>
+      <form method="post" action="">
+      <div class="input-box"> 
+      <input id="username" type="text" name="username" placeholder="아이디"> 
+      <label for="username">아이디</label> 
+      </div> 
+      <div class="input-box"> 
+      <input id="password" type="password" name="password" placeholder="비밀번호"> 
+      <label for="password">비밀번호</label> 
+      </div>  
+      <input type="submit" value="로그인">
+      <input type="reset" value="초기화">
+      </form>
+      </div>
+    `+ footer;
+    response.send(profile);
+});
+
 app.listen(port, function() {
   console.log('Example app listening on port 3000!')
 });
