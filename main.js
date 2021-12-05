@@ -185,11 +185,10 @@ app.get('/profile', function(request, response) {
     response.send(profile);
 });
 
-
-app.get('/lonin', function(request, response) { 
+app.get('/login', function(request, response) { 
   var screen = template.screen();
   var footer = template.footer();
-    var profile = screen  +
+    var login = screen  +
     ` <div class="container">
       <h3>로그인</h3>
       <form method="post" action="">
@@ -206,7 +205,7 @@ app.get('/lonin', function(request, response) {
       </form>
       </div>
     `+ footer;
-    response.send(profile);
+    response.send(login);
 });
 
 app.listen(port, function() {
