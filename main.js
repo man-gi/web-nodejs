@@ -31,7 +31,7 @@ app.get('/intro', function(request, response) {
 });
 
 app.get('/blist', function(request, response) { 
-  fs.readdir('/data', function(error, filelist){
+  fs.readdir('./data', function(error, filelist){
     var screen = template.screen();
     var list = template.list(filelist);
     var html = template.HTML('', list,
@@ -181,6 +181,6 @@ app.get('/profile', function(request, response) {
     response.send(profile);
 });
 
-app.listen(3000, function() {
+app.listen(prot, function() {
   console.log('Example app listening on port 3000!')
 });
