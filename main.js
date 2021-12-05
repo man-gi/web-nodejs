@@ -20,25 +20,27 @@ app.get('/', function(request, response) {
 
 app.get('/intro', function(request, response) { 
   var screen = template.screen();
+  var footer = template.footer();
     var intro = screen  + `
     <div class="container">
       <h3>포렌식 시나리오를 작성하는 곳입니다.</h3>
       <p>
       </p>
     </div>
-    `;
+    `+footer;
     response.send(intro);
 });
 
 app.get('/blist', function(request, response) { 
   fs.readdir('./data', function(error, filelist){
     var screen = template.screen();
+    var footer = template.footer();
     var list = template.list(filelist);
     var html = template.HTML('', list,
       '',
       `<a href="/create">글쓰기</a>`
     ); 
-    var blist = screen + html;
+    var blist = screen + html + footer;
     response.send(blist);
   });
 });
@@ -69,6 +71,7 @@ app.get('/page/:pageId', function(request, response) {
 app.get('/create', function(request, response){
   fs.readdir('./data', function(error, filelist){
     var title = 'WEB - create';
+    var footer = template.footer();
     var screen = template.screen();
     var html = template.HTML(title, '', `
       <form action="/create_process" method="post">
@@ -81,7 +84,7 @@ app.get('/create', function(request, response){
         </p>
       </form>
     `, '');
-    var blist = screen + html;
+    var blist = screen + html + footer;
     response.send(blist);
   });
 });
@@ -165,6 +168,7 @@ app.post('/delete_process', function(request, response){
 
 app.get('/profile', function(request, response) { 
   var screen = template.screen();
+  var footer = template.footer();
     var profile = screen  + 
     `<div class="container">
       <h1>ABOUT ME</h1>
@@ -177,7 +181,7 @@ app.get('/profile', function(request, response) {
           군산대학교 컴퓨터공학부 재학중인 전만기이라고 합니다.
           </div>
       </div>
-      `;
+      `+ footer;
     response.send(profile);
 });
 
