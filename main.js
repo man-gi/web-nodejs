@@ -35,7 +35,7 @@ app.get('/blist', function(request, response) {
     var list = template.list(filelist);
     var html = template.HTML('', list,
       '',
-      `<a href="/create">create</a>`
+      `<a href="/create">글쓰기</a>`
     ); 
     var blist = screen + html;
     response.send(blist);
@@ -51,11 +51,11 @@ app.get('/page/:pageId', function(request, response) {
       var sanitizedDescription = sanitizeHtml(description);
       var html = template.HTML(sanitizedTitle,'',
         `<h3>${sanitizedTitle}</h3>${sanitizedDescription}<br>`,
-        `<a href="/create">create</a>
-          <a href="/update/${sanitizedTitle}">update</a>
+        `<a href="/create">글쓰기</a>
+          <a href="/update/${sanitizedTitle}">업데이트</a>
           <form action="/delete_process" method="post">
             <input type="hidden" name="id" value="${sanitizedTitle}">
-            <input type="submit" value="delete">
+            <input type="submit" value="삭제">
           </form>
           `
       );
@@ -119,7 +119,7 @@ app.get('/update/:pageId', function(request, response){
           </p>
         </form>
         `,
-        `<a href="/create">create</a> <a href="/update/${title}">update</a>`
+        `<a href="/create">글쓰기</a> <a href="/update/${title}">업데이트</a>`
       );
       response.send(html);
     });
@@ -179,6 +179,6 @@ app.get('/profile', function(request, response) {
     response.send(profile);
 });
 
-app.listen(port, function() {
+app.listen(3000, function() {
   console.log('Example app listening on port 3000!')
 });
