@@ -12,6 +12,7 @@ const port = process.env.PORT;
 //app.get('/', (req, res) => res.send('Hello World!'))
 
 app.use(express.static(__dirname + "/static"));
+app.use(express.static(__dirname + "/data"));
 
 app.get('/', function(request, response) { 
   response.redirect('/intro');
@@ -30,7 +31,7 @@ app.get('/intro', function(request, response) {
 });
 
 app.get('/blist', function(request, response) { 
-  fs.readdir('./data', function(error, filelist){
+  fs.readdir('/data', function(error, filelist){
     var screen = template.screen();
     var list = template.list(filelist);
     var html = template.HTML('', list,
