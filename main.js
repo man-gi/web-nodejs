@@ -6,7 +6,9 @@ var qs = require('querystring');
 var main_form = require('./lib/main_form.js');
 var template = require('./lib/template.js');
 var sanitizeHtml = require('sanitize-html');
- 
+
+const port = process.env.PORT;
+
 //route, routing
 //app.get('/', (req, res) => res.send('Hello World!'))
 
@@ -181,6 +183,6 @@ app.get('/profile', function(request, response) {
     response.send(profile);
 });
 
-app.listen(3000, function() {
+app.listen(port, function() {
   console.log('Example app listening on port 3000!')
 });
