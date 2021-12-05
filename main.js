@@ -53,6 +53,7 @@ app.get('/page/:pageId', function(request, response) {
         `<h3>${sanitizedTitle}</h3>${sanitizedDescription}<br>`,
         `<a href="/create">글쓰기</a>
           <a href="/update/${sanitizedTitle}">업데이트</a>
+          <a href="/blist">뒤로가기</a>
           <form action="/delete_process" method="post">
             <input type="hidden" name="id" value="${sanitizedTitle}">
             <input type="submit" value="삭제">
